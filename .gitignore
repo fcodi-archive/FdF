@@ -1,0 +1,9 @@
+cmake-build-debug
+README.md
+fdf
+*.a
+*.out
+*.o
+.*
+!.gitignore
+!.gitmodules
