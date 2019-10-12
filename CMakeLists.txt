@@ -7,15 +7,14 @@ add_custom_target(fdf
         COMMAND make
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
-include_directories(.:libft)
-
+include_directories(.:libft:/usr/local/include)
+link_directories(/usr/local/lib)
 add_compile_options(-Wall -Wextra -Werror -g3)
-
 find_library(OPEN_GL OpenGl)
 find_library(APP_KIT AppKit)
 link_libraries(mlx)
 
-add_executable(fff
+add_executable(f
         main.c)
 
 add_library(ft STATIC
@@ -102,4 +101,4 @@ add_library(ft STATIC
         libft/ft_lstmap.c
         libft/ft_isupper.c)
 
-target_link_libraries(fff ft ${OPEN_GL} ${APP_KIT})
+target_link_libraries(f ft mlx ${OPEN_GL} ${APP_KIT})
