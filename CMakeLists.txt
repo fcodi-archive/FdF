@@ -15,7 +15,14 @@ find_library(APP_KIT AppKit)
 link_libraries(mlx)
 
 add_executable(f
-        main.c)
+        main.c
+        ft_tastr.c
+        ft_tastr_holder.c
+        ft_tpoint_map.c
+        ft_tpoint_map_keeper.c
+        fdf_tastr_holder.c
+        fdf_tpoint_map.c
+        fdf_tpoint_map_keeper.c ft_tmlx.c)
 
 add_library(ft STATIC
         libft/ft_astr_del.c
