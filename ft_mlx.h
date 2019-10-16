@@ -6,7 +6,7 @@
 /*   By: fcodi <fcodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:55:49 by fcodi             #+#    #+#             */
-/*   Updated: 2019/10/16 18:55:50 by fcodi            ###   ########.fr       */
+/*   Updated: 2019/10/16 23:27:44 by fcodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,13 @@ typedef struct			s_point
 	union
 	{
 		int				color;
-		unsigned char	b: 8;
-		unsigned char	g: 8;
-		unsigned char	r: 8;
-		unsigned char	a: 8;
+		struct
+		{
+			unsigned char	b: 8;
+			unsigned char	g: 8;
+			unsigned char	r: 8;
+			unsigned char	a: 8;
+		};
 	};
 }						t_point;
 
@@ -53,7 +56,7 @@ typedef struct			s_tmlx
 	void				*mlx;
 	void				*win;
 	void				*img;
-	void				*data;
+	int 				*data;
 	int 				bpp;
 	int 				lsize;
 	int 				endian;

@@ -6,7 +6,7 @@
 /*   By: fcodi <fcodi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 21:44:31 by fcodi             #+#    #+#             */
-/*   Updated: 2019/10/16 21:55:51 by fcodi            ###   ########.fr       */
+/*   Updated: 2019/10/16 23:28:17 by fcodi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ t_mlx	*init_tmlx(void)
 	|| !(tmlx->mlx = mlx_init())
 	|| !(tmlx->win = mlx_new_window(tmlx->mlx, WINDOW_X, WINDOW_Y, TITLE))
 	|| !(tmlx->img = mlx_new_image(tmlx->mlx, WINDOW_X, WINDOW_Y))
-	|| !(tmlx->data = mlx_get_data_addr(tmlx->img, &tmlx->bpp, &tmlx->lsize,
+	|| !(tmlx->data = (int *)mlx_get_data_addr(tmlx->img, &tmlx->bpp,
+			&tmlx->lsize,
 			&tmlx->endian)))
 	{
 		destroy_tmlx(tmlx);
