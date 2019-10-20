@@ -12,6 +12,17 @@
 
 #include "ft_mlx.h"
 
+void	clear_tmlx_data(t_mlx *tmlx)
+{
+	int 	i;
+
+	if (!tmlx)
+		return ;
+	i = 0;
+	while (tmlx->data[i])
+		tmlx->data[i++] = 0;
+}
+
 void	destroy_tmlx(t_mlx *tmlx)
 {
 	if (!tmlx)
@@ -47,23 +58,27 @@ t_mlx	*new_tmlx(void)
 	tmlx->win = NULL;
 	tmlx->img = NULL;
 	tmlx->data = NULL;
-	tmlx->bpp = 0;
-	tmlx->lsize = 0;
-	tmlx->endian = 0;
 	return (tmlx);
 }
 
-t_mlx	*init_tmlx(void)
+t_mlx	*init_tmlx(int win_x, int win_y, char *title)
 {
 	t_mlx	*tmlx;
+	int 	phony;
 
+	if ((win_x <= 0 || win_y <= 0))
+	{
+		win_x = WINDOW_X;
+		win_y = WINDOW_Y;
+	}
+	if (!title)
+		title = TITLE;
 	if (!(tmlx = new_tmlx())
 	|| !(tmlx->mlx = mlx_init())
-	|| !(tmlx->win = mlx_new_window(tmlx->mlx, WINDOW_X, WINDOW_Y, TITLE))
-	|| !(tmlx->img = mlx_new_image(tmlx->mlx, WINDOW_X, WINDOW_Y))
-	|| !(tmlx->data = (int *)mlx_get_data_addr(tmlx->img, &tmlx->bpp,
-			&tmlx->lsize,
-			&tmlx->endian)))
+	|| !(tmlx->win = mlx_new_window(tmlx->mlx, win_x, win_y, title))
+	|| !(tmlx->img = mlx_new_image(tmlx->mlx, win_x, win_y))
+	|| !(tmlx->data = (int *)mlx_get_data_addr(tmlx->img, &phony, &phony,
+			&phony)))
 	{
 		destroy_tmlx(tmlx);
 		return (NULL);

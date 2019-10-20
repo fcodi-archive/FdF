@@ -13,11 +13,19 @@
 #include "fdf.h"
 #include <stdio.h> //TODO DEL
 
-extern void					destroy_tmlx(t_mlx *tmlx);
-extern t_mlx				*init_tmlx(void);
-extern void					destroy_tpoint_map_keeper(t_point_map_keeper
-*keeper);
-extern t_point_map_keeper	*init_tpoint_map_keeper(const char *path);
+int				key_hook(int keycode)
+{
+	if (keycode == 53)
+	{
+		exit(OK);
+	}
+	return (OK);
+}
+
+int				win_cross_pressed(void)
+{
+	exit(OK);
+}
 
 int 						main(int argc, char **argv)
 {
@@ -30,13 +38,16 @@ int 						main(int argc, char **argv)
 		return (ERROR);
 	}
 	if (!(keeper = init_tpoint_map_keeper(argv[1]))
-	|| !(tmlx = init_tmlx()))
+	|| !(tmlx = init_tmlx(0, 0, NULL)))
 	{
 		destroy_tpoint_map_keeper(keeper);
 		return (ERROR);
 	}
 	tmlx->data[0] = 0xFFFFFF;
-	mlx_put_image_to_window(tmlx->mlx, tmlx->win, tmlx->img, 0,0);
+	mlx_put_image_to_window(tmlx->mlx, tmlx->win, tmlx->img, WINDOW_X / 2,
+			WINDOW_Y / 2);
+	mlx_key_hook(tmlx->win, key_hook, NULL);
+	mlx_hook(tmlx->win, 17, 0, win_cross_pressed, NULL);
 	mlx_loop(tmlx->mlx);
 	destroy_tmlx(tmlx);
 	destroy_tpoint_map_keeper(keeper);

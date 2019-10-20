@@ -12,19 +12,14 @@
 
 #include "fdf.h"
 
-extern t_point_map_keeper		*new_tpoint_map_keeper(void);
-extern void						destroy_tpoint_map_keeper(
-		t_point_map_keeper *keeper);
-extern t_point					**init_tpoint_map(const char *path,
-		size_t *x_max, size_t *y_max);
-
 t_point_map_keeper				*init_tpoint_map_keeper(const char *path)
 {
 	t_point_map_keeper			*keeper;
 
 	keeper = NULL;
 	if (!path || !(keeper = new_tpoint_map_keeper())
-	|| !(keeper->map = init_tpoint_map(path, &keeper->x_max, &keeper->y_max)))
+	|| !(keeper->map = init_tpoint_map(path, &keeper->x_max, &keeper->y_max,
+			&keeper->z_max)))
 	{
 		destroy_tpoint_map_keeper(keeper);
 		return (NULL);

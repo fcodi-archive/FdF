@@ -12,12 +12,6 @@
 
 #include "fdf.h"
 
-extern t_astr_holder	*new_tastr_holder(void);
-
-extern void				*destroy_tastr_holder(t_astr_holder *holder);
-
-extern size_t			tastr_length(t_astr *tastr);
-
 _Bool					fill_tastr_holder(t_astr_holder *holder,
 										   const int fd)
 {
@@ -35,10 +29,10 @@ _Bool					fill_tastr_holder(t_astr_holder *holder,
 			ft_strdel(&line);
 			return (FALSE);
 		}
-		holder->y_max++;
+		holder->line_count++;
 		if (is_first_time ? !(is_first_time = FALSE) : FALSE)
-			holder->x_max = tastr_length(holder->tail);
-		else if (tastr_length(holder->tail) < holder->x_max)
+			holder->strlen_max = tastr_length(holder->tail);
+		else if (tastr_length(holder->tail) < holder->strlen_max)
 		{
 			ft_strdel(&line);
 			return (FALSE);

@@ -12,8 +12,6 @@
 
 #include "ft_mlx.h"
 
-extern void				destroy_tpoint_map(t_point **map);
-
 void					destroy_tpoint_map_keeper(t_point_map_keeper *keeper)
 {
 	if (!keeper)
@@ -32,5 +30,6 @@ t_point_map_keeper		*new_tpoint_map_keeper(void)
 	keeper->map = NULL;
 	keeper->x_max = 0;
 	keeper->y_max = 0;
+	keeper->z_max = 0;
 	return (keeper);
 }

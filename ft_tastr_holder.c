@@ -12,10 +12,6 @@
 
 #include "ft_mlx.h"
 
-extern void		*destroy_tastr_all(t_astr_holder *holder);
-
-extern size_t	tastr_length(t_astr *tastr);
-
 void			destroy_tastr_holder(t_astr_holder *holder)
 {
 	if (!holder)
@@ -31,8 +27,8 @@ t_astr_holder	*new_tastr_holder(void)
 
 	if (!(holder = (t_astr_holder *)malloc(sizeof(t_astr_holder))))
 		return (NULL);
-	holder->x_max = 0;
-	holder->y_max = 0;
+	holder->strlen_max = 0;
+	holder->line_count = 0;
 	holder->current = NULL;
 	holder->head = NULL;
 	holder->tail = NULL;
